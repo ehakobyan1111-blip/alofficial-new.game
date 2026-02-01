@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<h2>Խաղի գումար</h2>
+
+<input id="rewardInput" placeholder="օր․ 1000 դրամ">
+<button onclick="saveReward()">Պահել</button>
+
+<p id="status"></p>
+
+<script>
+async function saveReward() {
+  const value = document.getElementById("rewardInput").value;
+  const status = document.getElementById("status");
+
+  try {
+    const response = await fetch("http://192.168.0.106:3001/admin/reward", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reward: value })
+    });
+
+    if (response.ok) {
+      status.innerText = "Հաջողությամբ պահպանվեց!";
+      status.style.color = "green";
+    } else {
+      status.innerText = "Սխալ տեղի ունեցավ:";
+    }
+  } catch (err) {
+    status.innerText = "Սերվերը չի արձագանքում:";
+    console.error(err);
+  }
+}
+</script>
+
+<input id="amount" type="number" />
+<button onclick="save()">Save</button>
+
+<script>
+function save() {
+  fetch("/set", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      value: document.getElementById("amount").value
+    })
+  })
+  .then(r => r.json())
+  .then(d => alert("Փոխվեց → " + d.winAmount));
+}
+</script>
+
+
+</body>
+</html>

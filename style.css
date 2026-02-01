@@ -1,0 +1,390 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  background: url('img/fon1.jpg') no-repeat center center fixed; /* Ձեր ֆոն */
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.box {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.box.opened {
+  pointer-events: none;
+}
+
+#message {
+  font-size: 18px;
+  margin: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.box {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.box {
+  width: 80px;
+  height: 80px;
+  background: url('img/cammon.jpg') center/cover no-repeat;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.controls button {
+  padding: 10px 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #ffcc00;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.controls button:hover {
+  background: #ffa500;
+  transform: scale(1.05);
+}
+
+.message p {
+  font-size: 18px;
+  margin: 20px;
+  color: #fff;
+  text-shadow: 1px 1px 2px #fff;
+  background: rgba(0,0,0,0.3); /* թափանցիկ սև ֆոն */
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.header{
+    color: blue;
+}
+
+.box {
+  width: 80px;
+  height: 80px;
+  background-color: #ddd; /* ⬅️ ԱՄԵՆԱԿԱՐԵՎՈՐ ՏՈՂԸ */
+  background-image: url('img/cammon.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.box {
+  width: 80px;
+  height: 80px;
+  background-color: #ddd;
+  background-image: url('img/cammon.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+
+  border: 2px solid #333;   /* ⬅️ ԱՅՍ ՏՈՂԸ */
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.box {
+  border: 2px solid rgba(255,255,255,0.8);
+  box-shadow:
+    inset 0 0 0 2px rgba(0,0,0,0.3),
+    0 4px 8px rgba(0,0,0,0.3);
+}
+
+.box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px gold;
+}
+
+#refreshBtn {
+  margin-top: 20px;
+  padding: 14px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  border: none;
+  border-radius: 14px;
+
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+  transition: 
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.3s ease;
+}
+
+/* hover */
+#refreshBtn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+  background: linear-gradient(135deg, #ffb300, #ff7043);
+}
+
+/* click */
+#refreshBtn:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.h1 h1 {
+  color: white;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 4px 8px rgba(0, 0, 0, 0.8),
+    0 6px 12px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+  padding: 15px 30px;
+  border-radius: 15px;
+  border: 3px solid gold;
+  box-shadow: 
+    0 10px 20px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(255,215,0,0.2);
+  font-size: 32px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.h1 h1::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255,255,255,0.1) 50%,
+    transparent 70%
+  );
+  animation: shine 3s infinite linear;
+  z-index: 0;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.h1 h1 span {
+  position: relative;
+  z-index: 1;
+}
+
+.h1 h1 {
+  color: white;
+  text-shadow: 
+    3px 3px 0 #000,
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 0 10px rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px 25px;
+  border-radius: 10px;
+  border: 2px solid white;
+  font-size: 28px;
+  margin-bottom: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.h1 h1 {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-shadow: 2px 2px 4px black;
+  border: 2px solid gold;
+  box-shadow: 0 0 20px rgba(255,215,0,0.3);
+}
+
+.h1 h1 {
+  color: white !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  padding: 15px 25px !important;
+  border-radius: 10px !important;
+  text-shadow: 2px 2px 4px black !important;
+}
+
+#message {
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 500px;
+  border: 2px solid;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+/* Հաղթած տուփի համար */
+.win-message {
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+/* Պարտված տուփի համար */
+.lose-message {
+  border-color: #f44336;
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  text-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+}
+
+#message {
+  background: black;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid white;
+  margin: 15px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+#message {
+  background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,20,0.9));
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin: 25px auto;
+  max-width: 500px;
+  border: 3px solid;
+  box-shadow: 
+    0 10px 25px rgba(0,0,0,0.7),
+    0 0 30px rgba(255,255,255,0.1);
+  animation: messageAppear 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+#message::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(255,255,255,0.1), 
+    rgba(255,255,255,0.05), 
+    rgba(255,255,255,0.1));
+  z-index: -1;
+  border-radius: 17px;
+}
+
+.win-message {
+  border-color: #4CAF50;
+  background: linear-gradient(135deg, 
+    rgba(0,0,0,0.9), 
+    rgba(20,40,20,0.9));
+  color: #4CAF50;
+  text-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+}
+
+.lose-message {
+  border-color: #f44336;
+  background: linear-gradient(135deg, 
+    rgba(0,0,0,0.9), 
+    rgba(40,20,20,0.9));
+  color: #f44336;
+  text-shadow: 0 0 15px rgba(244, 67, 54, 0.7);
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Հաղորդագրության համար պարզ տարբերակ */
+#message.simple {
+  background: black;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  border: 2px solid white;
+  margin: 15px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.box {
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+

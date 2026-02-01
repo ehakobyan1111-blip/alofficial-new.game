@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎁 Տուփ բացելու խաղ</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Արագ CSS, որ տեսնես արդյունքը */
+    .grid { display: grid; grid-template-columns: repeat(4, 80px); gap: 15px; justify-content: center; margin-top: 50px; }
+    .box { width: 80px; height: 80px; background-color: #ddd; cursor: pointer; border-radius: 12px; 
+           display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;
+           background-image: url('img/cammon.jpg'); background-size: cover; }
+    #message { font-size: 20px; font-weight: bold; margin: 20px; min-height: 30px; }
+    .win { color: green; }
+    .lose { color: red; }
+  </style>
+</head>
+<body>
+
+  <div class="h1">
+    <h1>🎁 Ընտրիր մեկ տուփ</h1>
+    <p id="message"></p>
+  </div>
+
+  <div class="grid" id="boxGrid">
+    <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+    <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+    <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+  </div>
+
+  <br>
+  <button id="refreshBtn">Խաղալ նորից 🔄</button>
+
+  <script>
+    const boxes = document.querySelectorAll(".box");
+    const message = document.getElementById("message");
+    const refreshBtn = document.getElementById("refreshBtn");
+
+    let gameOver = false;
+    let winAmount = "1000 դրամ"; // Սկզբնական արժեք, եթե սերվերը չաշխատի
+    let winIndex = Math.floor(Math.random() * boxes.length);
+
+    // 1. Սերվերից վերցնում ենք գումարը
+    fetch("http://localhost:3001/game/reward")
+      .then(res => res.json())
+      .then(data => {
+        if(data.reward) winAmount = data.reward;
+      })
+      .catch(err => console.log("Server-ը միացրած չէ, օգտագործվում է default reward:"));
+
+    // 2. Կլիկի ֆունկցիան
+    boxes.forEach((box, index) => {
+      box.addEventListener("click", () => {
+        if (gameOver) return;
+        
+        gameOver = true;
+        box.style.backgroundImage = "none";
+        box.style.backgroundColor = "#fff";
+
+        if (index === winIndex) {
+          box.textContent = winAmount;
+          box.style.color = "green";
+          message.innerHTML = `<span class="win">🎉 Շնորհավոր! Դու հաղթեցիր ${winAmount}</span>`;
+        } else {
+          box.textContent = "X";
+          box.style.color = "red";
+          message.innerHTML = `<span class="lose">❌ Ցավոք, դատարկ էր</span>`;
+        }
+      });
+    });
+
+    refreshBtn.onclick = () => location.reload();
+  </script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB_9cribhEAHGiBr_xlZvpLYA9aiVx07dU",
+    authDomain: "alofficial777-game.firebaseapp.com",
+    projectId: "alofficial777-game",
+    storageBucket: "alofficial777-game.appspot.com",
+    messagingSenderId: "233499767693",
+    appId: "1:233499767693:web:ac1518137496e7750c43c4"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const boxess = document.querySelectorAll(".box");
+  const messagee = document.getElementById("message");
+
+  let gameOverr = false;
+  let winAmountt = "";
+  let winIndexx = Math.floor(Math.random() * boxes.length);
+
+  async function loadReward() {
+    const snap = await getDoc(doc(db, "game", "settings"));
+    winAmount = snap.data().reward;
+  }
+
+  loadReward().then(() => {
+    boxes.forEach((box, index) => {
+      box.onpointerdown = (e) => {
+        e.preventDefault();
+        if (gameOver) return;
+        gameOver = true;
+
+        box.style.backgroundImage = "none";
+        box.style.backgroundColor = "#fff";
+
+        if (index === winIndex) {
+          box.textContent = winAmount;
+          message.textContent = `🎉 Շնորհավորում ենք, դու շահեցիր ${winAmount}`;
+        } else {
+          box.textContent = "X";
+          message.textContent = "❌ Ցավոք, չշահեցիր";
+        }
+      };
+    });
+  });
+</script>
+
+
+
+</body>
+</html>
